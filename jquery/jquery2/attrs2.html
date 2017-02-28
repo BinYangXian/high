@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="js/jquery.min.js"></script>
+
+	<script>
+		function testAttr(){
+			//测试得到和删除属性
+			$('#input').attr('test','aaaa');
+
+			$('#input').prop('test','bbbb'); //功能同上，推荐使用:两个参数就是添加键值对（如果同键则覆盖之），一个参数就是取值，
+		}
+
+		function testRemoveAttr() {
+			$('#input').removeAttr('test');
+
+			console.log($('#input').prop('test'))
+		}
+
+		function testData(){
+			var key = $('.wrap').data('key');
+			console.log(key);
+		}
+
+		function testAddClass(_btn){
+
+			$(_btn).addClass('green'); //给此按钮添加css 类名为 green的类选择器。
+
+		}
+		function testRemoveClass(_btn){
+
+			$(_btn).removeClass('green');
+
+		}
+		function testToggleClass(_btn){
+
+			$(_btn).toggleClass('green');//切换类选择器 green：存在的时候切换为无，反之。
+
+		}
+
+		function testHtml(){
+			var html = $('.wrap').html(); //类似于: 对象.innerHTML
+			console.log(html);
+		}
+
+		function testText(){
+			var html = $('.wrap').text();//类似于 对象.innerTEXT
+			console.log(html);
+		}
+		function testVal(){
+			var value = $('#input').val();// val()：是得到了具体的表单域，然后调用其value属性，得到它的值
+			console.log(value);
+
+			$('#input').val("admin");//val("admin")：是得到了具体的表单域，然后设置其value属性
+		}
+
+		function testBindClick(){
+			$('.box').bind('click',{username:'lisi'},function(e){  //e：event事件对象，{username:'lisi'} 是可选的，
+			// 有此后会传递到第三个函数对象的e.data 中。
+				console.log(e.data);
+			})
+			$('.box').bind('click mouseout',function(e){
+				console.log(e.data);
+			})
+			$('.box').bind('click',function(e){
+				console.log(e.type);
+			})
+			$('.box').bind('mouseout',function(e){
+				console.log(e.type);
+			})
+
+			$('.box').bind({
+				"click":function(){
+					console.log(arguments)
+				},
+				"mouseout":function(e){
+					console.log(e.type)
+				},
+				"cdsxt":function(e){
+					console.log(e.type); //输出的是：cdsxt
+				}
+			})
+            $('.box').unbind("click")  //解绑
+		}
+
+		function testTrigger(){
+			$('#box1').trigger('cdsxt');
+		}
+
+		function testCss(){
+			$('.wrap').css('background-color','red'); //background-color 中间有横杠，所以需要加引号或者去之且驼峰命名：backgroundColor 。
+
+			$('.wrap').css({
+				width:200,
+				"background-color":'green',
+				marginTop:'20px'
+			});
+
+		}
+	</script>
+
+	<style>
+		.wrap{
+
+			height: 120px;
+
+		}
+
+		.box{
+			float: left;
+			margin:10px 20px 0 0;
+			width: 100px;
+			height: 100px;
+			border: 1px solid gray;
+			line-height: 100px;
+			text-align: center;
+		}
+
+		.btn{
+			width: 60px;
+			height: 30px;
+		}
+
+		.green{
+			background-color: green;
+			color: #fff;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<input type="button" onclick="testAttr()" value="testAttr">
+	<input type="button" onclick="testRemoveAttr()" value="testRemoveAttr">
+	<input type="button" onclick="testData()" value="testData">
+	<input type="button" onclick="testHtml()" value="testHtml">
+	<input type="button" onclick="testText()" value="testText">
+	<input type="button" onclick="testVal()" value="testVal">
+	<input type="button" onclick="testCss()" value="testCss">
+	<input type="button" onclick="testBindClick()" value="testBindClick">
+	<input type="button" onclick="testTrigger()" value="testTrigger">
+	<hr />
+	<div class="wrap" data-key="lisi">
+		<div class="box" id="box1"></div>
+		<div class="box" id="box2"></div>
+		<div class="box" id="box3"></div>
+		<div class="box" id="box4"></div>
+		<div class="box" id="box5"></div>
+		<div class="box" id="box6">lisi</div>
+	</div>
+
+	<div style="clear: both;margin-top: 20px">
+		<input type="text" id="input">
+		<div id="msg"></div>
+	</div>
+
+	<button class="btn" onclick="testAddClass(this)">Button</button>
+	<button class="btn green" onclick="testRemoveClass(this)">Button</button>
+	<button class="btn" onclick="testToggleClass(this)">Button</button>
+</body>
+</html>

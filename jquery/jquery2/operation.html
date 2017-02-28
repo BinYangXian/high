@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="js/jquery.min.js"></script>
+
+	<script>
+
+		function testOp(){
+			$('.box').append('<h1>123123</h1>')
+			$('.box').append($('<h1>123123</h1>'))
+
+			$('<h2>aaaaaa</h2>').appendTo($('.box'))//如果是$('aaaaaa')，这样并不会将中间的字符串转换为jquery对象的，所以无法成功appendTo。
+		}
+
+		function testFilter(){
+			var box = $('#box');
+
+			//var f = box.firstChild();
+			//console.log(f);
+
+			var ls = box.find('.box:first'); //查找：parant、parants、parantsUtil、prevAll（注意all首字母大写，cuishifeng文档部分有误）...
+			// siblings
+			console.log(ls);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" onclick="testOp()" value="testOp">
+	<input type="button" onclick="testFilter()" value="testFilter">
+	<hr>
+	<div class="box">lisi</div>
+	<div class="box">lisi</div>
+	<div id="box">
+		<div class="box" value="box1">lisi1</div>
+		<div class="box" value="box2">lisi2</div>
+
+	</div>
+</body>
+</html>

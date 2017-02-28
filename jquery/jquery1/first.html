@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="js/jquery.min.js"></script>
+
+	<script>
+
+		/**
+		 * jQuery 对象和 Dom对象的转换
+		 *
+		 * jQuery               DOM
+		 *
+		 * $(dom)               $jQuery.get(index)
+		 *
+		 * jQuery 类数组对象 既有数组的特性也有对象的特性
+		 *
+		 * 只要是对jQuery对象进行操作  不管其中有多少个Dom对象  都会生效
+		 *
+		 *
+		 *
+		 *
+		 *
+		 */
+
+		function testGetDom(){
+			//测试选择器
+			//jquery对象
+			var box = $('#box1');
+			console.log(box);
+
+			console.log(box.get(0));
+			console.log(box[0]);
+
+			console.log($('.box'));
+			//基本筛选器（伪类选择器）：
+			console.log($('.box:first'));//得到第一个
+			console.log($('.box:last'));
+			console.log($('.box:even'));
+			console.log($('.box:odd'));
+			console.log($('.box:not(:first)'));
+			console.log($('.box:contains("lisi")'));
+			console.log($('.box:empty'));
+
+
+
+			console.log($('[class]'))
+			console.log($('[id="box1"][class]'))
+
+		}
+	</script>
+	<style>
+
+		#box1,#box2{
+			border:1px solid gray;
+			margin: 20px;
+			width: 200px;
+			height: 150px;
+		}
+
+		.box{
+			border: 1px solid green;
+			padding: 5px;
+			margin: 3px;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<input type="button" onclick="testGetDom()" value="testGetDom">
+	<hr />
+	<div id="box1" class="">
+		<div class="box">this is a div</div>
+		<div class="box">this is a div</div>
+		<div class="box">this is a div</div>
+		<div class="box">lisi</div>
+	</div>
+	<div id="box2">
+		<div class="box">this is a div</div>
+		<div class="box">zhangsan</div>
+		<div class="box">this is a div</div>
+		<div class="box">&nbsp;</div>
+	</div>
+
+</body>
+</html>
